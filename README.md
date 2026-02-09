@@ -1,61 +1,131 @@
-# 🚀 Getting started with Strapi
+Project: Dockerized Strapi Application with AWS Deployment
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+Project Overview  
+This project demonstrates containerization of a Strapi CMS application using Docker and running it locally for development. The same Docker image is then pushed to AWS Elastic Container Registry (ECR) and deployed on Amazon Elastic Kubernetes Service (EKS), exposing the application using a cloud LoadBalancer.
 
-### `develop`
+This project goes beyond basic Docker usage and showcases real-world cloud deployment practices.
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+Objectives
 
-```
-npm run develop
-# or
-yarn develop
-```
+- Containerize a Strapi application using Docker
+    
+- Run the Strapi container locally
+    
+- Push Docker image to AWS ECR
+    
+- Deploy the application on AWS EKS
+    
+- Expose the application using a LoadBalancer service
+    
 
-### `start`
+Tech Stack Used
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+- Strapi CMS (v5)
+    
+- Docker
+    
+- AWS ECR (Elastic Container Registry)
+    
+- AWS EKS (Elastic Kubernetes Service)
+    
+- Kubernetes
+    
+- Node.js
+    
+- SQLite (for development)
+    
 
-```
-npm run start
-# or
-yarn start
-```
+Project Structure
 
-### `build`
+- Dockerfile – Used to build the Strapi Docker image
+    
+- strapi-deployment.yaml – Kubernetes Deployment configuration
+    
+- strapi-service.yaml – Kubernetes Service (LoadBalancer) configuration
+    
+- package.json – Strapi application dependencies and scripts
+    
+- config, src, public – Strapi application source files
+    
 
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+Steps Performed
 
-```
-npm run build
-# or
-yarn build
-```
+1. Local Docker Setup
+    
 
-## ⚙️ Deployment
+- Created a Dockerfile for Strapi
+    
+- Built Docker image locally
+    
+- Ran Strapi container on localhost (port 1337)
+    
+- Verified Strapi Admin panel locally
+    
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+2. AWS ECR
+    
 
-```
-yarn strapi deploy
-```
+- Created an ECR repository
+    
+- Tagged Docker image
+    
+- Pushed image to AWS ECR
+    
 
-## 📚 Learn more
+3. AWS EKS Deployment
+    
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+- Created EKS cluster
+    
+- Configured kubectl access
+    
+- Deployed Strapi using Kubernetes Deployment
+    
+- Created LoadBalancer service to expose the app
+    
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+How to Run Locally
 
-## ✨ Community
+1. Build Docker Image  
+    docker build -t strapi-dev .
+    
+2. Run Container  
+    docker run -p 1337:1337 strapi-dev
+    
+3. Access Application  
+    Strapi Admin Panel:  
+    http://localhost:1337/admin
+    
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+Environment Variables Used
 
----
+- NODE_ENV
+    
+- HOST
+    
+- PORT
+    
+- APP_KEYS
+    
+- JWT_SECRET
+    
+- ADMIN_JWT_SECRET
+    
+- API_TOKEN_SALT
+    
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Learning Outcomes
+
+- Hands-on experience with Docker containerization
+    
+- Understanding of Docker image lifecycle
+    
+- Real-world AWS ECR image management
+    
+- Kubernetes deployment and service exposure
+    
+- Practical experience with cloud-native application deployment
+    
+
+Conclusion  
+This project demonstrates an end-to-end workflow starting from local development to cloud deployment using modern DevOps tools. It reflects practical knowledge of Docker, AWS, and Kubernetes beyond basic usage.
